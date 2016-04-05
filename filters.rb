@@ -9,17 +9,25 @@ def getIdFromString(option)
 end
 
 def find(id)  
-  #binding.pry
+  raise '@candidates MUST be an array' if @candidates.nil?
   @candidates.each { |candidate| 
     if candidate[:id] == id 
       return candidate
     end
-
   }
-  return "candidate #{id} not found"
+  return "Candidate #{id} not found"
 end
 
-def experienced?(candidate, experience=2)
+class InvalidCandidateError < StandardError
+  begin
+  #puts "InvalidCandidateError"
+  end
+end
+
+def experienced?(candidate, experience=2) 
+  unless candidate.has_key?(:years_of_experience)
+    raise InvalidCandidateError, 'Candidate data missing the :years_of_experience key!'
+  end
   candidate[:years_of_experience] >= experience
 end
 
@@ -47,7 +55,13 @@ def isNoob?(candidate, age)
 end
 
 def isValidCandidate?(candidate, years, git_points, languages, days_applied, age)
-  experienced?(candidate, years) && 
+  begin
+    experienced = experienced?(candidate, years) 
+  rescue InvalidCandidateError => ex
+    puts "Can't determine if one of the candidates has enough experience"
+    puts "Reason: #{ex.message}"
+  end 
+  experienced && 
   valid_github_points?(candidate, git_points) && 
   has_languages?(candidate, languages) &&
   recently_applied?(candidate, days_applied) &&

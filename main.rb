@@ -10,18 +10,18 @@ require_relative './filters'
 
 
 #binding.pry
-# pp experienced?(@candidates[2])
+#pp experienced?(@candidates[5])
 # puts
 # pp find(10)
 # puts
-# pp qualified_candidates
+qualified_candidates
 # puts
 # pp ordered_by_qualifications(@candidates)
 
 def menu
   puts "Please make a selection"
   puts
-  puts "(find)      Find first candidate"
+  puts "(find x)    Find candidate, where x is the ID"
   puts "(all)       Show all candidates"
   puts "(qualified) Show only qualified candidates"
   puts "(quit)      Quit program"
