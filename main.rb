@@ -14,7 +14,7 @@ require_relative './filters'
 # puts
 # pp find(10)
 # puts
-qualified_candidates
+#qualified_candidates
 # puts
 # pp ordered_by_qualifications(@candidates)
 

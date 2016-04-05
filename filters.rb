@@ -75,13 +75,11 @@ def qualified_candidates
       validCandidates << candy
     end
   }
-  #byebug
   s = validCandidates.join(" ")
 end
 
 def ordered_by_qualifications(candies)
   orderedCandidates = candies.sort_by { |hash| [ -hash[:years_of_experience], -hash[:github_points] ] }
-  #byebug
   s = orderedCandidates.join(" ")
 end
 
